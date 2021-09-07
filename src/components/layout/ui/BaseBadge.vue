@@ -1,9 +1,19 @@
 <template>
-  <div></div>
+  <span class="badge" :class="type">
+    {{ text }}
+  </span>
 </template>
 
 <script>
-export default {};
+export default {
+  props: ['type', 'title'],
+  computed: {
+    text() {
+      // to convert the text to upper case
+      return this.title.toUpperCase();
+    }
+  }
+};
 </script>
 
 <style scoped>
