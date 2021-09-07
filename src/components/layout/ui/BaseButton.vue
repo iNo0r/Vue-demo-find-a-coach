@@ -1,9 +1,34 @@
 <template>
-  <div></div>
+  <button v-if="!link" :class="mode">
+    <slot></slot>
+  </button>
+  <router-link v-else :to="to" :class="mode">
+    <slot> </slot>
+  </router-link>
 </template>
 
 <script>
-export default {};
+export default {
+  props: {
+    // to control the styling
+    mode: {
+      type: String,
+      required: false,
+      default: null
+    },
+    link: {
+      type: Boolean,
+      required: false,
+      // in here the default value of the link is false
+      default: false
+    },
+    to: {
+      type: String,
+      required: false,
+      default: '/'
+    }
+  }
+};
 </script>
 
 <style scoped>
@@ -28,13 +53,13 @@ button:active {
   background-color: #270041;
   border-color: #270041;
 }
-
+/* first mode  */
 .flat {
   background-color: transparent;
   color: #3a0061;
   border: none;
 }
-
+/* second mode  */
 .outline {
   background-color: transparent;
   border-color: #270041;
