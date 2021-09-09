@@ -1,7 +1,7 @@
 export default {
   registerCoach(context, payload) {
     const coachData = {
-      id: 'c3',
+      id: context.rootGetters.userId,
       firstName: payload.first,
       lastName: payload.last,
       description: payload.desc,
@@ -9,6 +9,7 @@ export default {
       areas: payload.areas
     };
     context.commit('registerCoach', coachData);
-    console.log('succel');
   }
 };
+
+//how to acess a root getter from a store module

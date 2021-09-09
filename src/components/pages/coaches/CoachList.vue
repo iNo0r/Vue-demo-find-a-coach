@@ -8,7 +8,9 @@
         <base-button mode="outline">Refresh</base-button>
         <!-- so important to me, passing the link alone will
          make it true as a prop -->
-        <base-button link to="/register"> Register as Coach</base-button>
+        <base-button v-if="!isCoach" link to="/register">
+          Register as Coach</base-button
+        >
       </div>
 
       <ul v-if="hasCoaches">
@@ -72,6 +74,9 @@ export default {
     },
     hasCoaches() {
       return this.$store.getters['coaches/coaches'];
+    },
+    isCoach() {
+      return this.$store.getters['coaches/isCoach'];
     }
   }
 };
