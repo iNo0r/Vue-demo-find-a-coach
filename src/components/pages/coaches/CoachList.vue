@@ -56,9 +56,10 @@ export default {
   computed: {
     filteredCoaches() {
       let coaches = this.$store.getters['coaches/coaches'];
+
       // in filter methos when ever is true returned,
       // item will be added to the filterd array
-      return coaches.filter(coach => {
+      let filnalFilteredCoaches = coaches.filter(coach => {
         if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
           return true;
         }
@@ -66,11 +67,11 @@ export default {
           return true;
         }
         if (this.activeFilters.career && coach.areas.includes('career')) {
-          console.log('hi');
           return true;
         }
         return false;
       });
+      return filnalFilteredCoaches;
     },
     hasCoaches() {
       return this.$store.getters['coaches/coaches'];

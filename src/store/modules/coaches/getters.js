@@ -12,8 +12,11 @@ export default {
   // hence will disable the registerCoach button
   isCoach(state, getters, rootState, rootGetters) {
     const coaches = getters.coaches;
-    const userId = rootGetters.userId;
+    const userId = rootGetters.getUserId;
     // Array.some() is will return true if one item met the condition
+    console.log(coaches.some(item => item.id === userId));
     return coaches.some(item => item.id === userId);
   }
 };
+
+// how to reach root getters from namespaced getters ?

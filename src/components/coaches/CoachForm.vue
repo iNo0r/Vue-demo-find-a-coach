@@ -84,23 +84,26 @@ export default {
   data() {
     return {
       firstName: {
-        value: '',
+        // value: '',
+        value: 'picner',
         isValid: true
       },
       lastName: {
-        value: '',
+        // value: '',
+        value: 'fuckers',
         isValid: true
       },
       description: {
         value: '',
+        value: 'cut the shit',
         isValid: true
       },
       rate: {
-        value: null,
+        value: 15,
         isValid: true
       },
       areas: {
-        value: [],
+        value: ['frontend'],
         isValid: true
       },
       formIsValid: true
