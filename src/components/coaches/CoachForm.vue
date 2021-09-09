@@ -13,7 +13,7 @@
       <textarea type="text" id="description"></textarea>
     </div>
     <div class="form-control">
-      <label for="rate">Description</label>
+      <label for="rate">Hourly rate</label>
       <input type="number" id="rate" />
     </div>
     <div class="form-control">
