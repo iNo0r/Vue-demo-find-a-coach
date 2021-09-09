@@ -29,27 +29,33 @@ export default {
     return {
       email: '',
       message: '',
-      fromIsValid: true
+      formIsValid: true
     };
   },
   methods: {
     validateForm() {
       // we sat it inot true incase of it was false as it going through validation agian
-      this.fromIsValid = true;
+      this.formIsValid = true;
       if (
         this.message === '' ||
         this.email === '' ||
         !this.email.includes('@')
       ) {
-        this.fromIsValid = false;
+        return (this.formIsValid = false);
       }
-      this.fromIsValid = true;
+      this.formIsValid = true;
     },
 
     submitForm() {
       this.validateForm();
       // the action going to start here if it is valid
-      if (this.fromIsValid) {
+      if (this.formIsValid) {
+        this.$store.dispatch('requests/contactCoach', {
+          email: this.email,
+          message: this.email,
+          coachId: this.$route.params.id
+        });
+        this.$router.replace('/coaches');
       }
     }
   }
