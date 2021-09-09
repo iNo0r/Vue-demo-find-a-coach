@@ -1,6 +1,6 @@
 <template>
   <section>
-    FILTER
+    <coach-filter @change-filter="setFilters"></coach-filter>
   </section>
   <section>
     <base-card>
@@ -20,7 +20,8 @@
           :last-name="coach.lastName"
           :rate="coach.hourlyRate"
           :areas="coach.areas"
-        ></coach-item>
+        >
+        </coach-item>
       </ul>
       <h3 v-else>No Coaches found.</h3></base-card
     >
@@ -29,13 +30,45 @@
 
 <script>
 import CoachItem from '../../coaches/CoachItem.vue';
+import CoachFilter from '../../coaches/CoachFilter.vue';
 export default {
   components: {
-    CoachItem
+    CoachItem,
+    CoachFilter
+  },
+  data() {
+    return {
+      activeFilters: {
+        frontend: true,
+        backend: true,
+        career: true
+      }
+    };
+  },
+  methods: {
+    setFilters(updatedFilters) {
+      this.activeFilters = updatedFilters;
+      console.log(updatedFilters);
+    }
   },
   computed: {
     filteredCoaches() {
-      return this.$store.getters['coaches/coaches'];
+      let coaches = this.$store.getters['coaches/coaches'];
+      // in filter methos when ever is true returned,
+      // item will be added to the filterd array
+      return coaches.filter(coach => {
+        if (this.activeFilters.frontend && coach.areas.includes('frontend')) {
+          return true;
+        }
+        if (this.activeFilters.backend && coach.areas.includes('backend')) {
+          return true;
+        }
+        if (this.activeFilters.career && coach.areas.includes('career')) {
+          console.log('hi');
+          return true;
+        }
+        return false;
+      });
     },
     hasCoaches() {
       return this.$store.getters['coaches/coaches'];
