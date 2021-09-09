@@ -9,7 +9,6 @@ export default {
       areas: payload.areas
     };
     context.commit('registerCoach', coachData);
-    console.log(context.rootGetters);
   }
 };
 

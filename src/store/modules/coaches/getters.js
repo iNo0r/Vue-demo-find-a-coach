@@ -14,7 +14,6 @@ export default {
     const coaches = getters.coaches;
     const userId = rootGetters.getUserId;
     // Array.some() is will return true if one item met the condition
-    console.log(coaches.some(item => item.id === userId));
     return coaches.some(item => item.id === userId);
   }
 };
