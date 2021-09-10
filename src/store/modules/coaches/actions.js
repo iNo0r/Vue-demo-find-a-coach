@@ -35,7 +35,7 @@ export default {
   // in here we are fetching all the coaches
   async loadCoaches(context) {
     const response = await fetch(
-      `https://coach-project-vue-vuex-default-rtdb.europe-west1.firebasedatabase.app/coaches.jso`
+      `https://coach-project-vue-vuex-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`
     );
     const responseData = await response.json();
 

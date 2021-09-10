@@ -80,7 +80,7 @@ export default {
   computed: {
     filteredCoaches() {
       let coaches = this.$store.getters['coaches/coaches'];
-
+      console.log(coaches);
       // in filter methos when ever is true returned,
       // item will be added to the filterd array
       let filnalFilteredCoaches = coaches.filter(coach => {
