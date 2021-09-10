@@ -94,7 +94,7 @@ export default {
         isValid: true
       },
       description: {
-        value: '',
+        // value: '',
         value: 'cut the shit',
         isValid: true
       },
