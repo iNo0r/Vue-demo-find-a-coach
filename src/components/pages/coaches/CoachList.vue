@@ -6,14 +6,17 @@
     <base-card>
       <div class="controls">
         <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
-        <!-- so important to me, passing the link alone will
-         make it true as a prop -->
-        <base-button v-if="!isCoach" link to="/register">
+        <!-- so important to me, passing a prop alone will
+         make it true as a prop in child component -->
+        <!-- we added !this.isLoading because the button was shown till data get fetched -->
+        <base-button v-if="!isCoach && !this.isLoading" link to="/register">
           Register as Coach</base-button
         >
       </div>
-
-      <ul v-if="hasCoaches">
+      <div v-if="isLoading">
+        <base-spinner></base-spinner>
+      </div>
+      <ul v-else-if="hasCoaches">
         <coach-item
           v-for="coach in filteredCoaches"
           :key="coach.id"
@@ -40,6 +43,7 @@ export default {
   },
   data() {
     return {
+      isLoading: false,
       activeFilters: {
         frontend: true,
         backend: true,
@@ -55,8 +59,10 @@ export default {
       this.activeFilters = updatedFilters;
       console.log(updatedFilters);
     },
-    laodCoaches() {
-      this.$store.dispatch('coaches/loadCoaches');
+    async laodCoaches() {
+      this.isLoading = true;
+      await this.$store.dispatch('coaches/loadCoaches');
+      this.isLoading = false;
     }
   },
   computed: {
@@ -80,7 +86,7 @@ export default {
       return filnalFilteredCoaches;
     },
     hasCoaches() {
-      return this.$store.getters['coaches/coaches'];
+      return !this.isLoading && this.$store.getters['coaches/coaches'];
     },
     isCoach() {
       return this.$store.getters['coaches/isCoach'];
