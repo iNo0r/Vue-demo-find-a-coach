@@ -5,7 +5,7 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
         <!-- so important to me, passing the link alone will
          make it true as a prop -->
         <base-button v-if="!isCoach" link to="/register">
@@ -47,10 +47,16 @@ export default {
       }
     };
   },
+  created() {
+    this.laodCoaches();
+  },
   methods: {
     setFilters(updatedFilters) {
       this.activeFilters = updatedFilters;
       console.log(updatedFilters);
+    },
+    laodCoaches() {
+      this.$store.dispatch('coaches/loadCoaches');
     }
   },
   computed: {
