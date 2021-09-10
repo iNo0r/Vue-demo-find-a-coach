@@ -6,7 +6,6 @@ export default {
       userEmail: payload.email,
       message: payload.message
     };
-    console.log('hi');
     context.commit('addRequest', newRequest);
   }
 };

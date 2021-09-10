@@ -45,7 +45,6 @@ export default {
       return this.selectedCoach.hourlyRate;
     },
     description() {
-      console.log(this.selectedCoach);
       return this.selectedCoach.description;
     }
   },
@@ -54,7 +53,6 @@ export default {
     this.selectedCoach = this.$store.getters['coaches/coaches'].find(
       coach => coach.id === this.id
     );
-    // console.log(this.selectedCoach);
   }
 };
 </script>
