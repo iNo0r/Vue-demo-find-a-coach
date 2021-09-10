@@ -35,12 +35,13 @@ export default {
   // in here we are fetching all the coaches
   async loadCoaches(context) {
     const response = await fetch(
-      `https://coach-project-vue-vuex-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`
+      `https://coach-project-vue-vuex-default-rtdb.europe-west1.firebasedatabase.app/coaches.jso`
     );
     const responseData = await response.json();
 
     if (!response.ok) {
-      //error...
+      const error = new Error(responseData.message || 'Failed to fetch!');
+      throw error;
     }
     // hence here we are getting the response back as an object, will reform it into an array
     const coaches = [];
