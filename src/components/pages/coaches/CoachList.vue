@@ -9,7 +9,9 @@
   <section>
     <base-card>
       <div class="controls">
-        <base-button mode="outline" @click="loadCoaches">Refresh</base-button>
+        <base-button mode="outline" @click="loadCoaches(true)"
+          >Refresh</base-button
+        >
         <!-- so important to me, passing a prop alone will
          make it true as a prop in child component -->
         <!-- we added !this.isLoading because the button was shown till data get fetched -->
@@ -64,10 +66,13 @@ export default {
       this.activeFilters = updatedFilters;
       console.log(updatedFilters);
     },
-    async loadCoaches() {
+    //refresh = false es6 method stuff, it will be passed false as default unless argument provided
+    async loadCoaches(refresh = false) {
       this.isLoading = true;
       try {
-        await this.$store.dispatch('coaches/loadCoaches');
+        await this.$store.dispatch('coaches/loadCoaches', {
+          forceRefresh: refresh
+        });
       } catch (error) {
         this.error = error.message || 'Something went wrong';
       }
@@ -118,4 +123,8 @@ ul {
   display: flex;
   justify-content: space-between;
 }
+
+/* 
+  1- how to pass an set a default value for a parameter in a fucniton ?
+ */
 </style>

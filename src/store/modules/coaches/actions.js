@@ -33,8 +33,9 @@ export default {
     });
   },
   // in here we are fetching all the coaches
-  async loadCoaches(context) {
-    if (!context.getters.shouldUpdate) {
+  async loadCoaches(context, payload) {
+    // forceRefresh will be inherited for the refresh button, to fetch forcely
+    if (!payload.forceRefresh && !context.getters.shouldUpdate) {
       return;
     }
     const response = await fetch(
