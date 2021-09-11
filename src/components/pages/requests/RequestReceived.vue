@@ -1,29 +1,31 @@
 <template>
-  <!-- step 7  -->
-  <!-- !! for passing the value of data as boolean -->
-  <base-dialog :show="!!error" title="an Error occured!" @close="handleError">
-    {{ error }}
-  </base-dialog>
+  <div>
+    <!-- step 7  -->
+    <!-- !! for passing the value of data as boolean -->
+    <base-dialog :show="!!error" title="an Error occured!" @close="handleError">
+      {{ error }}
+    </base-dialog>
 
-  <section>
-    <base-card>
-      <header>
-        <h2>Requests Received</h2>
-      </header>
-      <!-- step 8 -->
-      <base-spinner v-if="isLoading"></base-spinner>
-      <!-- step 9 => added "&& !isLoading" -->
-      <ul v-else-if="hasRequests && !isLoading">
-        <request-item
-          v-for="req in receivedRequests"
-          :key="req.id"
-          :email="req.userEmail"
-          :message="req.message"
-        ></request-item>
-      </ul>
-      <h3 v-else>you haven't received in requests yet !</h3>
-    </base-card>
-  </section>
+    <section>
+      <base-card>
+        <header>
+          <h2>Requests Received</h2>
+        </header>
+        <!-- step 8 -->
+        <base-spinner v-if="isLoading"></base-spinner>
+        <!-- step 9 => added "&& !isLoading" -->
+        <ul v-else-if="hasRequests && !isLoading">
+          <request-item
+            v-for="req in receivedRequests"
+            :key="req.id"
+            :email="req.userEmail"
+            :message="req.message"
+          ></request-item>
+        </ul>
+        <h3 v-else>you haven't received in requests yet !</h3>
+      </base-card>
+    </section>
+  </div>
 </template>
 <script>
 import RequestItem from '../../requests/RequestItem.vue';
