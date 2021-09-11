@@ -5,6 +5,8 @@ export default {
   namespaced: true,
   state() {
     return {
+      //will hold a time stamp, when ever we fetch new data
+      lastFetch: null,
       coaches: [
         {
           id: 'c1',

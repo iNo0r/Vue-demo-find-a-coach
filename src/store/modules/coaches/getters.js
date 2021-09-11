@@ -15,6 +15,18 @@ export default {
     const userId = rootGetters.getUserId;
     // Array.some() is will return true if one item met the condition
     return coaches.some(item => item.id === userId);
+  },
+  // this methos will true , to decide whether to fetch or not
+  shouldUpdate(state) {
+    // lastfetch is a timestamp
+    const lastFetch = state.lastFetch;
+    // if it null means no timestamp yet
+    if (!lastFetch) {
+      return true;
+    }
+    const currentTimeStamp = new Date().getTime();
+    // this expresion will check if the last fetch was more than a minute ago
+    return (currentTimeStamp - lastFetch) / 1000 > 60;
   }
 };
 

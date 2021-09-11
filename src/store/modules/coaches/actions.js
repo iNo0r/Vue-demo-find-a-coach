@@ -34,6 +34,9 @@ export default {
   },
   // in here we are fetching all the coaches
   async loadCoaches(context) {
+    if (!context.getters.shouldUpdate) {
+      return;
+    }
     const response = await fetch(
       `https://coach-project-vue-vuex-default-rtdb.europe-west1.firebasedatabase.app/coaches.json`
     );
@@ -56,6 +59,7 @@ export default {
       coaches.push(coach);
     }
     context.commit('setCoaches', coaches);
+    context.commit('setFetchTimeStamp');
   }
 };
 
@@ -64,3 +68,6 @@ export default {
 // - rather than using .then we can store the response utilizing the async method technique
 //3-  how can we go throgh each  object's key?
 // using for ( let key in someObject)
+//4- what is the objective of "shouldUpdate() ?"
+// -the point of adding the shouldUpdate method is to not spam fetching,
+//- so when the user moving between routes, to not update for no valid reason and to wait at least a minute
